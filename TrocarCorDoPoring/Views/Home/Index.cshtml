@@ -1,0 +1,72 @@
+﻿@model PuzzleInput
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Lights Out Solver</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 40px);
+            grid-gap: 5px;
+        }
+
+        .cell-label {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+        }
+
+            input[type="checkbox"]:checked + .cell-label {
+                background: #88E788;
+                border-color: #008000;
+            }
+
+        .btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form asp-action="Index" method="post">
+        @Html.AntiForgeryToken()
+        <div class="grid">
+            @for (int row = 1; row <= 5; row++)
+            {
+                @for (int col = 0; col < 5; col++)
+                {
+                    var pos = $"{row}{(char)('A' + col)}";
+                    <div>
+                        <input type="checkbox" id="@pos" name="Verdes" value="@pos" />
+                        <label for="@pos" class="cell-label">@pos</label>
+                    </div>
+                }
+            }
+        </div>
+        <button class="btn" type="submit">Resolver</button>
+    </form>
+</body>
+</html>
