@@ -9,23 +9,106 @@
     <title>Solução</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
             padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            text-align: center;
+            color: #555;
         }
 
         ol {
-            max-width: 300px;
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            li:hover {
+                background-color: #eef;
+            }
+
+            li.completed label {
+                background-color: #d1ffd1;
+                text-decoration: line-through;
+            }
+
+        label {
+            margin-left: 8px;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+            .btn:hover {
+                background-color: #45a049;
+            }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
     </style>
+    
 </head>
 <body>
+    <h3>Exemplo explicativo</h3>
+    <p>Imagine que as bolinhas verdes estão nas posições: 1B, 1D, 2B, 2C, 2C, 2D, 3B, 3C e 3D, 4D, 4E. O sistema calcula onde clicar para deixá-las todas rosas:</p>
+    <img src="@Url.Content("~/images/exemplo.png")" alt="Exemplo do puzzle" />
+   
     <h2>Passo a passo para deixar todas as bolinhas rosas</h2>
+    <p>Marque cada passo que você já realizou para acompanhar seu progresso:</p>
     <ol>
-        @foreach (var step in Model)
+        @for (int i = 0; i < Model.Count; i++)
         {
-            <li>Linha @step.Linha, Coluna @step.Coluna</li>
+            var step = Model[i];
+            <li>                
+                <label for="step_@i">Clique na linha @step.Linha, coluna @step.Coluna</label>
+                <input type="checkbox" id="step_@i" onchange="toggleCompleted(this)" />
+            </li>
         }
     </ol>
-    <a href="@Url.Action("Index")">Nova resolução</a>
+    <a class="btn" href="@Url.Action("Index")">Nova resolução</a>
+    <script>
+        function toggleCompleted(checkbox) {
+            const item = checkbox.parentElement;
+            item.classList.toggle('completed', checkbox.checked);
+        }
+    </script>
 </body>
 </html>

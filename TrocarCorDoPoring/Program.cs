@@ -1,5 +1,6 @@
 using TrocarCorDoPoring.Servicos;
 using TrocarCorDoPoring.Servicos.Interfaces;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
