@@ -12,4 +12,4 @@ Olá pessoal, tudo bem? Essa aplicação aqui serve pra resolver o puzzle da Dra
 ![image](https://github.com/user-attachments/assets/3a9c4181-2546-486a-a1bd-b074e1ac425a)
 
 Link para download da aplicação. Baixem o TrocarCorDoPoring.rar
-https://github.com/NathanCantamissa/TrocarCorDoPoring/releases/tag/Arkaik
+https://github.com/NathanCantamissa/TrocarCorDoPoring/releases/tag/1.1.0
